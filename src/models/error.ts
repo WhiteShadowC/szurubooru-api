@@ -1,10 +1,10 @@
-interface SzuruBooruError {
-  name: SzuruBooruErrors;
+interface SzuruError<E extends SzuruErrors = SzuruErrors> {
+  name: SzuruErrors;
   title: string;
   description: string;
 }
 
-type SzuruBooruErrors =
+type SzuruErrors =
   | 'MissingRequiredFileError'
   | 'MissingRequiredParameterError'
   | 'InvalidParameterError'
@@ -47,4 +47,5 @@ type SzuruBooruErrors =
   | 'InvalidRankError'
   | 'InvalidAvatarError'
   | 'ProcessingError'
-  | 'ValidationError';
+  | 'ValidationError'
+  | 'Unknown';
