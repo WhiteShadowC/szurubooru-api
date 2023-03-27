@@ -8,10 +8,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: 'tsconfig.json',
+    project: 'tsconfig.eslint.json',
   },
   rules: {
-    "@typescript-eslint/no-unused-vars": 'off',
-    "eqeqeq": 'off'
+    '@typescript-eslint/no-unused-vars': 'off',
+    eqeqeq: 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };
