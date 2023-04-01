@@ -47,5 +47,4 @@ type SzuruErrors =
   | 'InvalidRankError'
   | 'InvalidAvatarError'
   | 'ProcessingError'
-  | 'ValidationError'
-  | 'Unknown';
+  | 'ValidationError';
