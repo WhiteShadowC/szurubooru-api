@@ -1,6 +1,6 @@
 import SzurubooruApi from '../../szurubooru-api';
 
-const api = new SzurubooruApi({ host: 'https://booru.sherry.moe/api/' });
+const api = new SzurubooruApi({ host: 'http://server:8080/' });
 
 describe('tag category endpoints', () => {
   test('addTag', async () => {

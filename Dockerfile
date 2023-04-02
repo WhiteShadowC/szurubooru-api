@@ -1,5 +1,7 @@
 FROM node:18
 WORKDIR /project
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+RUN yarn
 COPY . /project
-RUN npm i
-CMD npm run test
+CMD yarn run --silent test

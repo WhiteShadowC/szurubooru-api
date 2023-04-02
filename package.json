@@ -7,7 +7,7 @@
     "prepare": "husky install",
     "dev": "ts-node --files src/app.ts",
     "test": "jest",
-    "docker-test": "docker compose up --renew-anon-volumes --build --abort-on-container-exit --attach library --quiet-pull"
+    "docker-test": "docker compose up --renew-anon-volumes --build --abort-on-container-exit --attach library --quiet-pull --no-log-prefix "
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

@@ -3,11 +3,13 @@ version: '2'
 services:
   library:
     container_name: library
+    tty: true
     build: .
     depends_on:
       - server
   server:
     image: szurubooru/server:latest
+    container_name: server
     depends_on:
       - sql
     environment:

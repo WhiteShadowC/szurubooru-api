@@ -1,0 +1,5 @@
+dist
+coverage
+.idea
+.husky
+node_modules
