@@ -18,11 +18,21 @@ export abstract class SzuruBaseApi {
     }
   }
 
-  async request<T, E extends SzuruErrors>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: string, fields: string[] | undefined): Promise<T> {
-    const query = new URLSearchParams();
-    if (fields != null) query.set('fields', fields.join(','));
+  protected async request<T, E extends SzuruErrors, M extends 'GET' | 'POST' | 'PUT' | 'DELETE'>(
+    method: M,
+    endpoint: string,
+    args: { fields?: string[]; query?: any }
+  ): Promise<T> {
+    const { fields, query } = args;
+    const q = new URLSearchParams();
+    if (fields != null) q.set('fields', fields.join(','));
+    if (query != null) {
+      Object.keys(query).forEach(key => {
+        if (query[key] != null) query.set(key, args.query[key]);
+      });
+    }
 
-    const res = await fetch(`${this.host}${url}?${query.toString()}`, {
+    const res = await fetch(`${this.host}${endpoint}?${q.toString()}`, {
       method,
       headers: {
         'Content-Type': 'application/json',

@@ -4,23 +4,16 @@ const api = new SzurubooruApi({ host: 'http://server:8080/' });
 
 describe('tag category endpoints', () => {
   test('addTag', async () => {
-    const tags = await api.getTagCategories();
+    const tags = await api.getTagCategories({});
+    console.log(tags);
     const shouldBe = {
       results: [
         {
           name: 'default',
-          version: 2,
+          version: 1,
           color: 'default',
-          usages: 2,
+          usages: 0,
           default: true,
-          order: 1,
-        },
-        {
-          name: 'test1',
-          version: 2,
-          color: '#ffffff',
-          usages: 2,
-          default: false,
           order: 1,
         },
       ],

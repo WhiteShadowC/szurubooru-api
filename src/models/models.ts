@@ -28,15 +28,6 @@ interface UserToken {
   lastUsageTime: string;
 }
 
-interface TagCategory {
-  version: number;
-  name: string;
-  color: string;
-  usages: number;
-  order: number;
-  default: boolean;
-}
-
 interface Tag {
   version: number;
   names: string[];

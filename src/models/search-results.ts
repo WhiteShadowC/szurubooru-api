@@ -20,11 +20,15 @@ export interface ImageSearchResult {
 export interface SzuruRequest<T, F extends keyof T> {
   fields?: F[];
 }
-export interface SzuruCreateRequest<T, F extends keyof T, P> extends SzuruRequest<T, F> {
-  payload: P;
+export interface SzuruPayload<T> {
+  payload: T;
 }
-
-export interface SzuruDeleteRequest {
+export interface SzuruVersion {
   version: number;
 }
-export type SzuruModifyRequest<T, F extends keyof T, P> = SzuruDeleteRequest & SzuruCreateRequest<T, F, P>;
+export interface SzuruQuery<T extends object> {
+  query: T;
+}
+export interface SzuruEndpointArgs<T extends object> {
+  endpoint: T;
+}
