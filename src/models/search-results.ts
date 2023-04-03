@@ -23,6 +23,23 @@ export interface SzuruRequest<T, F extends keyof T> {
 export interface SzuruPayload<T> {
   payload: T;
 }
+
+type Only<T, U> = {
+  [P in keyof T]: T[P];
+} & {
+  [P in keyof U]?: never;
+};
+// type SzuruUploadProp<T extends string> = Record<T, any> & Record<`${T}Url`, string> & Record<`${T}Token`, string>;
+export type SzuruUploadProp<T extends string> =
+  | Only<Record<`${T}Token`, string>, Record<T, never> & Record<`${T}Url`, never>>
+  | Only<Record<T, string>, Record<`${T}Url`, never> & Record<`${T}Token`, never>>
+  | Only<Record<`${T}Url`, string>, Record<T, never> & Record<`${T}Token`, never>>;
+export interface SzuruUpload<T extends string> {
+  // upload: Partial<Record<T, any> & Record<`${T}Url`, string> & Record<`${T}Token`, string>>;
+  upload: {
+    [K in T]: SzuruUploadProp<K>;
+  };
+}
 export interface SzuruVersion {
   version: number;
 }
