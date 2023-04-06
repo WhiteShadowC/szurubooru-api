@@ -2,7 +2,7 @@ import { SzuruBaseApi } from '../szuru-base-api';
 import { type SzuruEndpointArgs, type SzuruPayload, type SzuruRequest, type SzuruVersion, type UnpagedSearchResult } from '../../models/search-results';
 import { type TagCategory } from './tag-category-models';
 
-type CreateUpdateTagCategoryDTO = Pick<TagCategory, 'name' | 'color'> & Partial<Pick<TagCategory, 'order'>>;
+type CreateUpdateTagCategoryDTO = Pick<TagCategory, 'name' | 'color' | 'order'>;
 type TagCategoryName = Pick<TagCategory, 'name'>;
 type PickedTagCategoryDTO<F extends keyof TagCategory> = Pick<TagCategory, F>;
 
