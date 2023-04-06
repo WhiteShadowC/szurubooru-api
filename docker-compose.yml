@@ -3,6 +3,8 @@ version: '2'
 services:
   library:
     container_name: library
+    environment:
+      HOST: http://server:8080/
     tty: true
     build: .
     depends_on:

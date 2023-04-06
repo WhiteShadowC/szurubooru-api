@@ -1,10 +1,23 @@
 import SzurubooruApi from '../../szurubooru-api';
 
-const api = new SzurubooruApi({ host: 'http://server:8080/' });
+let api: SzurubooruApi;
+beforeAll(async () => {
+  const temp = new SzurubooruApi({ host: process.env.HOST });
+  try {
+    await temp.createUser({
+      payload: {
+        name: 'test',
+        password: '12345678',
+      },
+    });
+  } catch (e) {}
+
+  api = new SzurubooruApi({ host: process.env.HOST, username: 'test', password: '12345678' });
+});
 
 describe('tag category endpoints', () => {
-  test('addTag', async () => {
-    const tags = await api.getTagCategories({});
+  test('getTagCategories', async () => {
+    const tags = await api.getTagCategories();
     console.log(tags);
     const shouldBe = {
       results: [
