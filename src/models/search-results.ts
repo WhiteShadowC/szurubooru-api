@@ -49,3 +49,5 @@ export interface SzuruQuery<T extends object> {
 export interface SzuruEndpointArgs<T extends object> {
   endpoint: T;
 }
+
+export type SzuruResponse<T, F extends keyof T> = Pick<T, F>;
