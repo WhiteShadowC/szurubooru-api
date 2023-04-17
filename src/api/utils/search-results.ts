@@ -1,5 +1,5 @@
 export interface PagedSearchResultQuery {
-  'initial-pos': number;
-  'page-size': number;
+  offset: number;
+  limit: number;
   query: string;
 }
