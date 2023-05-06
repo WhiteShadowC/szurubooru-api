@@ -10,7 +10,6 @@ import {
 import { type TagCategory } from './tag-category-models';
 
 type CreateUpdateTagCategoryDTO = Pick<TagCategory, 'name' | 'color' | 'order'>;
-type TagCategoryName = Pick<TagCategory, 'name'>;
 
 export class TagCategoryApi extends SzuruBaseApi {
   async getTagCategories<F extends keyof TagCategory>(args: SzuruRequest<TagCategory, F> = {}): Promise<UnpagedSearchResult<TagCategory, F>> {
@@ -24,22 +23,20 @@ export class TagCategoryApi extends SzuruBaseApi {
   }
 
   async updateCategory<F extends keyof TagCategory>(
-    args: SzuruRequest<TagCategory, F> & SzuruPayload<CreateUpdateTagCategoryDTO> & SzuruEndpointArgs<TagCategoryName> & SzuruVersion
+    args: SzuruRequest<TagCategory, F> & SzuruPayload<CreateUpdateTagCategoryDTO> & SzuruEndpointArgs<'name'> & SzuruVersion
   ): Promise<SzuruResponse<TagCategory, F>> {
-    return await this.request('PUT', `tag-categories/${args.endpoint.name}`, args);
+    return await this.request('PUT', `tag-categories/${args.name}`, args);
   }
 
-  async getTagCategory<F extends keyof TagCategory>(
-    args: SzuruRequest<TagCategory, F> & SzuruEndpointArgs<TagCategoryName>
-  ): Promise<SzuruResponse<TagCategory, F>> {
-    return await this.request('GET', `tag-categories/${args.endpoint.name}`, args);
+  async getTagCategory<F extends keyof TagCategory>(args: SzuruRequest<TagCategory, F> & SzuruEndpointArgs<'name'>): Promise<SzuruResponse<TagCategory, F>> {
+    return await this.request('GET', `tag-categories/${args.name}`, args);
   }
 
-  async deleteCategory<F extends keyof TagCategory>(args: SzuruEndpointArgs<TagCategoryName> & SzuruVersion): Promise<object> {
-    return await this.request('DELETE', `tag-categories/${args.endpoint.name}`, {});
+  async deleteCategory<F extends keyof TagCategory>(args: SzuruEndpointArgs<'name'> & SzuruVersion): Promise<object> {
+    return await this.request('DELETE', `tag-categories/${args.name}`, {});
   }
 
-  async setDefaultCategory<F extends keyof TagCategory>(args: SzuruEndpointArgs<TagCategoryName>): Promise<object> {
-    return await this.request('PUT', `tag-categories/${args.endpoint.name}/default`, {});
+  async setDefaultCategory<F extends keyof TagCategory>(args: SzuruEndpointArgs<'name'>): Promise<object> {
+    return await this.request('PUT', `tag-categories/${args.name}/default`, {});
   }
 }

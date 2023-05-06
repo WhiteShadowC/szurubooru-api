@@ -23,16 +23,16 @@ export class UserApi extends SzuruBaseApi {
   }
 
   async updateUser<F extends keyof User>(
-    args: SzuruRequest<User, F> & UpdateUserDTO & SzuruVersion & Partial<SzuruUpload<'avatar'>> & SzuruEndpointArgs<Pick<User, 'name'>>
+    args: SzuruRequest<User, F> & UpdateUserDTO & SzuruVersion & Partial<SzuruUpload<'avatar'>> & SzuruEndpointArgs<'name'>
   ): Promise<SzuruResponse<User, F>> {
-    return await this.request('PUT', `users/${args.endpoint.name}`, args);
+    return await this.request('PUT', `users/${args.name}`, args);
   }
 
-  async getUser<F extends keyof User>(args: SzuruRequest<User, F> & SzuruEndpointArgs<Pick<User, 'name'>>): Promise<SzuruResponse<User, F>> {
-    return await this.request('GET', `users/${args.endpoint.name}`, args);
+  async getUser<F extends keyof User>(args: SzuruRequest<User, F> & SzuruEndpointArgs<'name'>): Promise<SzuruResponse<User, F>> {
+    return await this.request('GET', `users/${args.name}`, args);
   }
 
-  async deleteUser<F extends keyof User>(args: SzuruEndpointArgs<Pick<User, 'name'>> & SzuruVersion): Promise<object> {
-    return await this.request('GET', `users/${args.endpoint.name}`, args);
+  async deleteUser<F extends keyof User>(args: SzuruEndpointArgs<'name'> & SzuruVersion): Promise<object> {
+    return await this.request('GET', `users/${args.name}`, args);
   }
 }

@@ -1,5 +1,4 @@
 import { SzuruBaseApi } from '../szuru-base-api';
-import { type TagCategory } from '../tag-category/tag-category-models';
 import {
   type PagedSearchResult,
   type SzuruEndpointArgs,
@@ -7,7 +6,6 @@ import {
   type SzuruRequest,
   type SzuruResponse,
   type SzuruVersion,
-  type UnpagedSearchResult,
 } from '../../models/search-results';
 import { type PagedSearchResultQuery } from '../utils/search-results';
 
@@ -22,17 +20,17 @@ export class TagCategoryApi extends SzuruBaseApi {
   }
 
   async updateTag<F extends keyof Tag>(
-    args: SzuruRequest<Tag, F> & Partial<CreateTagDTO> & SzuruVersion & SzuruEndpointArgs<{ name: string }>
+    args: SzuruRequest<Tag, F> & Partial<CreateTagDTO> & SzuruVersion & SzuruEndpointArgs<'name'>
   ): Promise<SzuruResponse<Tag, F>> {
-    return await this.request('PUT', `tags/${args.endpoint.name}`, args);
+    return await this.request('PUT', `tags/${args.name}`, args);
   }
 
-  async getTag<F extends keyof Tag>(args: SzuruRequest<Tag, F> & SzuruEndpointArgs<{ name: string }>): Promise<SzuruResponse<Tag, F>> {
-    return await this.request('GET', `tags/${args.endpoint.name}`, args);
+  async getTag<F extends keyof Tag>(args: SzuruRequest<Tag, F> & SzuruEndpointArgs<'name'>): Promise<SzuruResponse<Tag, F>> {
+    return await this.request('GET', `tags/${args.name}`, args);
   }
 
-  async deleteTag<F extends keyof Tag>(args: SzuruVersion & SzuruEndpointArgs<{ name: string }>): Promise<object> {
-    return await this.request('DELETE', `tags/${args.endpoint.name}`, args);
+  async deleteTag<F extends keyof Tag>(args: SzuruVersion & SzuruEndpointArgs<'name'>): Promise<object> {
+    return await this.request('DELETE', `tags/${args.name}`, args);
   }
 
   async MergeTags<F extends keyof Tag>(
@@ -42,8 +40,8 @@ export class TagCategoryApi extends SzuruBaseApi {
   }
 
   async getTagSiblings<F extends keyof Tag>(
-    args: SzuruRequest<Tag, F> & SzuruEndpointArgs<{ name: string }>
+    args: SzuruRequest<Tag, F> & SzuruEndpointArgs<'name'>
   ): Promise<{ results: Array<{ tag: SzuruResponse<Tag, F>; occurrences: number }> }> {
-    return await this.request('GET', `tag-siblings/${args.endpoint.name}`, args);
+    return await this.request('GET', `tag-siblings/${args.name}`, args);
   }
 }

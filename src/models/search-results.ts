@@ -46,8 +46,8 @@ export interface SzuruVersion {
 export interface SzuruQuery<T extends object> {
   query: T;
 }
-export interface SzuruEndpointArgs<T extends object> {
-  endpoint: T;
-}
+export type SzuruEndpointArgs<T extends string> = {
+  [K in T]: string | number;
+};
 
 export type SzuruResponse<T, F extends keyof T> = Pick<T, F>;
