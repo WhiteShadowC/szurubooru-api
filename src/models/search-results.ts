@@ -41,7 +41,7 @@ export interface SzuruUpload<T extends string> {
   };
 }
 export interface SzuruVersion {
-  version: number;
+  payload: { version: number };
 }
 export interface SzuruQuery<T extends object> {
   query: T;

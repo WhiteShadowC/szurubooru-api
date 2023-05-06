@@ -24,7 +24,7 @@ export abstract class SzuruBaseApi {
   protected async request<T, E extends SzuruErrors>(
     method: Method,
     endpoint: string,
-    args: { fields?: string[]; query?: any; payload?: any; upload?: any; version?: number }
+    args: { fields?: string[]; query?: any; payload?: any; upload?: any }
   ): Promise<T> {
     const request: AxiosRequestConfig = {
       method,
@@ -42,7 +42,7 @@ export abstract class SzuruBaseApi {
 
     if (args.fields != null) request.params.fields = args.fields?.join(',');
 
-    const payload: any = { ...args.payload, version: args.version };
+    const payload: any = { ...args.payload };
     if (args.upload == null) request.data = JSON.stringify(payload);
     // if a life has to be potentially uploaded
     else {
