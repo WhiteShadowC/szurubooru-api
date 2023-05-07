@@ -9,10 +9,10 @@ export interface PagedSearchResult<T, F extends keyof T = keyof T> extends Unpag
   total: number;
 }
 
-export interface ImageSearchResult {
-  exactPost: Post;
+export interface ImageSearchResult<F extends keyof Post> {
+  exactPost: F;
   similarPosts: Array<{
-    post: Post;
+    post: F;
     distance: number;
   }>;
 }

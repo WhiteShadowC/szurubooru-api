@@ -21,11 +21,7 @@ export abstract class SzuruBaseApi {
     }
   }
 
-  protected async request<T, E extends SzuruErrors>(
-    method: Method,
-    endpoint: string,
-    args: { fields?: string[]; query?: any; payload?: any; upload?: any }
-  ): Promise<T> {
+  protected async request<T, E extends SzuruErrors>(method: Method, endpoint: string, args: any): Promise<T> {
     const request: AxiosRequestConfig = {
       method,
       headers: {
