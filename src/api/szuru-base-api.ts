@@ -44,28 +44,18 @@ export abstract class SzuruBaseApi {
 
     const payload: any = { ...args.payload };
     if (args.upload == null) request.data = JSON.stringify(payload);
-    // if a life has to be potentially uploaded
     else {
-      // the payload + all xxxUrl/xxxToken (https://github.com/rr-/szurubooru/blob/master/doc/API.md#file-uploads) properties are merged into "payload"
       for (const key of Object.keys(args.upload)) {
-        const fileUrl = args.upload[key][`${key}Url`];
-        const fileToken = args.upload[key][`${key}Token`];
-        if (fileUrl != null) payload[`${key}Url`] = fileUrl;
-        else if (fileToken != null) payload[`${key}Token`] = fileToken;
-      }
-
-      // if a file has to be uploaded, use form-data
-      if (this.useFormData(args.upload)) {
-        if (request.headers != null) request.headers['Content-Type'] = 'multipart/form-data';
-        request.data.metadata = JSON.stringify(payload);
-
-        for (const key of Object.keys(args.upload)) {
-          const filePath = args.upload[key][key];
-          // todo fs.createReadStream will not work in browser, find another solution later
-          if (filePath != null) request.data[key] = fs.createReadStream(filePath);
+        // urls and tokens can be safely added to the payload
+        if (key.endsWith('Url') || key.endsWith('Token')) payload[key] = args.upload[key];
+        else {
+          // a file needs to be uploaded
+          if (request.headers != null) request.headers['Content-Type'] = 'multipart/form-data';
+          request.data[key] = fs.createReadStream(args.upload[key]);
         }
       }
-      // if no file has to be uploaded because only xxxUrl/xxxToken properties were used
+
+      if (request.headers?.['Content-Type'] == 'multipart/form-data') request.data.metadata = JSON.stringify(payload);
       else request.data = payload;
     }
 

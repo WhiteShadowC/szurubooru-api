@@ -16,7 +16,7 @@ export interface ImageSearchResult {
     distance: number;
   }>;
 }
-
+// todo T can be removed tbh
 export interface SzuruRequest<T, F extends keyof T> {
   fields?: F[];
 }
@@ -29,17 +29,14 @@ type Only<T, U> = {
 } & {
   [P in keyof U]?: never;
 };
-// type SzuruUploadProp<T extends string> = Record<T, any> & Record<`${T}Url`, string> & Record<`${T}Token`, string>;
-export type SzuruUploadProp<T extends string> =
-  | Only<Record<`${T}Token`, string>, Record<T, never> & Record<`${T}Url`, never>>
-  | Only<Record<T, string>, Record<`${T}Url`, never> & Record<`${T}Token`, never>>
-  | Only<Record<`${T}Url`, string>, Record<T, never> & Record<`${T}Token`, never>>;
+
 export interface SzuruUpload<T extends string> {
-  // upload: Partial<Record<T, any> & Record<`${T}Url`, string> & Record<`${T}Token`, string>>;
-  upload: {
-    [K in T]: SzuruUploadProp<K>;
-  };
+  upload:
+    | Only<Record<`${T}Token`, string>, Record<T, never> & Record<`${T}Url`, never>>
+    | Only<Record<T, string>, Record<`${T}Url`, never> & Record<`${T}Token`, never>>
+    | Only<Record<`${T}Url`, string>, Record<T, never> & Record<`${T}Token`, never>>;
 }
+
 export interface SzuruVersion {
   payload: { version: number };
 }
