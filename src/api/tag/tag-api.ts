@@ -33,7 +33,7 @@ export class TagCategoryApi extends SzuruBaseApi {
     return await this.request('DELETE', `tags/${args.name}`, args);
   }
 
-  async MergeTags<F extends keyof Tag>(
+  async mergeTags<F extends keyof Tag>(
     args: SzuruPayload<{ removeVersion: number; mergeToVersion: number; remove: string; mergeTo: string }>
   ): Promise<SzuruResponse<Tag, F>> {
     return await this.request('POST', 'tag-merge', args);
