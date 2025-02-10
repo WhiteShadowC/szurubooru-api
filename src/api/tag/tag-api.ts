@@ -10,7 +10,7 @@ import {
 import { type PagedSearchResultQuery } from '../utils/search-results';
 
 type CreateTagDTO = SzuruPayload<Pick<Tag, 'names' | 'category'> & Partial<Pick<Tag, 'description' | 'implications' | 'suggestions'>>>;
-export class TagCategoryApi extends SzuruBaseApi {
+export class TagApi extends SzuruBaseApi {
   async getTags<F extends keyof Tag>(args: SzuruRequest<Tag, F> & PagedSearchResultQuery): Promise<PagedSearchResult<Tag, F>> {
     return await this.request('GET', 'tags', args);
   }
