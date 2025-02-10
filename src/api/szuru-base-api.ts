@@ -32,7 +32,7 @@ export abstract class SzuruBaseApi {
       params: {
         ...args.query,
       },
-      url: `${this.host}${endpoint}`,
+      url: `${this.host}/api/${endpoint}`,
       data: {},
     };
 
