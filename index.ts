@@ -1,4 +1,6 @@
 import { SzuruBaseApi } from './src/api/szuru-base-api';
+import { PostApi } from './src/api/post/post-api';
+import { TagApi } from './src/api/tag/tag-api';
 import { TagCategoryApi } from './src/api/tag-category/tag-category-api';
 import { UserApi } from './src/api/user/user-api';
 
@@ -16,7 +18,7 @@ export function applyMixins(derivedCtor: any, baseCtors: any[]) {
 }
 
 class SzurubooruApi extends SzuruBaseApi {}
-interface SzurubooruApi extends TagCategoryApi, UserApi {}
-applyMixins(SzurubooruApi, [TagCategoryApi, UserApi]);
+interface SzurubooruApi extends PostApi, TagApi, TagCategoryApi, UserApi {}
+applyMixins(SzurubooruApi, [PostApi, TagApi, TagCategoryApi, UserApi]);
 
 export default SzurubooruApi;
