@@ -5,7 +5,6 @@
   "scripts": {
     "build": "tsc",
     "prepare": "husky install",
-    "dev": "ts-node --files src/app.ts",
     "test": "jest",
     "docker-test": "docker compose up --build --attach library --no-log-prefix --quiet-pull && docker compose down -v"
   },
