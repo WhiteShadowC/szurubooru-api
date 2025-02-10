@@ -15,7 +15,7 @@ type CreatePostDTO = SzuruPayload<Pick<Post, 'tags' | 'safety'> & Partial<Pick<P
 type UpdatePostDTO = SzuruPayload<Pick<Post, 'tags' | 'safety'> & Partial<Pick<Post, 'source' | 'relations' | 'notes' | 'flags'>>>;
 export class PostApi extends SzuruBaseApi {
   async getPosts<F extends keyof Post>(args: SzuruRequest<Post, F> & PagedSearchResultQuery): Promise<PagedSearchResult<Post>> {
-    return await this.request('GET', 'posts', args);
+    return await this.request('GET', 'posts', { query: args });
   }
 
   // todo thumbnail is optional
