@@ -1,6 +1,6 @@
-import { SzuruBaseApi } from './api/szuru-base-api';
-import { TagCategoryApi } from './api/tag-category/tag-category-api';
-import { UserApi } from './api/user/user-api';
+import { SzuruBaseApi } from './src/api/szuru-base-api';
+import { TagCategoryApi } from './src/api/tag-category/tag-category-api';
+import { UserApi } from './src/api/user/user-api';
 
 /**
  * https://github.com/ilyamkin/dev-to-js

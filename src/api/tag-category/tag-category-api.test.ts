@@ -1,4 +1,4 @@
-import SzurubooruApi from '../../szurubooru-api';
+import SzurubooruApi from '../../../';
 
 let api: SzurubooruApi;
 beforeAll(async () => {
