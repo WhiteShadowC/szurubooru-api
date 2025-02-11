@@ -1,4 +1,4 @@
-interface Tag {
+export interface Tag {
   version: number;
   names: string[];
   category: string;
@@ -10,4 +10,4 @@ interface Tag {
   description: string;
 }
 
-type MicroTag = Pick<Tag, 'names' | 'category' | 'usages'>;
+export type MicroTag = Pick<Tag, 'names' | 'category' | 'usages'>;

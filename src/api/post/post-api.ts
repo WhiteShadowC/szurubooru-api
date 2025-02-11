@@ -10,6 +10,7 @@ import {
   type SzuruUpload,
   type SzuruVersion,
 } from '../../models/search-results';
+import type { Post } from "./post-api-models";
 
 type CreatePostDTO = SzuruPayload<Pick<Post, 'tags' | 'safety'> & Partial<Pick<Post, 'source' | 'relations' | 'notes' | 'flags'>> & { anonymous: boolean }>;
 type UpdatePostDTO = SzuruPayload<Pick<Post, 'tags' | 'safety'> & Partial<Pick<Post, 'source' | 'relations' | 'notes' | 'flags'>>>;

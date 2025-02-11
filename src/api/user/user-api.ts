@@ -10,6 +10,7 @@ import {
   type SzuruVersion,
 } from '../../models/search-results';
 import { type PagedSearchResultQuery } from '../utils/search-results';
+import type { User } from './user-models';
 
 type CreateUserDTO = SzuruPayload<Pick<User, 'name'> & { password: string } & Partial<Pick<User, 'email' | 'rank' | 'avatarStyle'>>>;
 type UpdateUserDTO = SzuruPayload<Partial<Pick<User, 'name' | 'email' | 'rank' | 'avatarStyle'>> & { password?: string }>;

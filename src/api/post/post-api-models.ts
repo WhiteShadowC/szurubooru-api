@@ -1,4 +1,8 @@
-interface Post {
+import type { MicroTag } from '../tag/tag-api-models';
+import type { MicroUser } from '../user/user-models';
+import type { MicroPool } from '../../models/models';
+
+export interface Post {
   version: number;
   id: number;
   creationTime: string;
@@ -36,4 +40,9 @@ interface Post {
   pools: MicroPool[];
 }
 
-type MicroPost = Pick<Post, 'id' | 'thumbnailUrl'>;
+export type MicroPost = Pick<Post, 'id' | 'thumbnailUrl'>;
+
+export interface Note {
+  polygon: Array<[number, number]>;
+  text: string;
+}

@@ -8,6 +8,7 @@ import {
   type SzuruVersion,
 } from '../../models/search-results';
 import { type PagedSearchResultQuery } from '../utils/search-results';
+import type { Tag } from './tag-api-models';
 
 type CreateTagDTO = SzuruPayload<Pick<Tag, 'names' | 'category'> & Partial<Pick<Tag, 'description' | 'implications' | 'suggestions'>>>;
 export class TagApi extends SzuruBaseApi {

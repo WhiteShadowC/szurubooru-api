@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   version: number;
   name: string;
   email: string | false | null;
@@ -14,4 +14,4 @@ interface User {
   favoritePostCount: number;
 }
 
-type MicroUser = Pick<User, 'name' | 'avatarUrl'>;
+export type MicroUser = Pick<User, 'name' | 'avatarUrl'>;

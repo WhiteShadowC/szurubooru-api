@@ -1,3 +1,6 @@
+import type { MicroPost } from '../api/post/post-api-models';
+import type { MicroUser } from '../api/user/user-models';
+
 interface UserToken {
   user: MicroUser;
   token: string;
@@ -10,12 +13,7 @@ interface UserToken {
   lastUsageTime: string;
 }
 
-interface Note {
-  polygon: Array<[number, number]>;
-  text: string;
-}
-
-interface PoolCategory {
+export interface PoolCategory {
   version: number;
   name: string;
   color: string;
@@ -23,7 +21,7 @@ interface PoolCategory {
   default: boolean;
 }
 
-interface Pool {
+export interface Pool {
   version: number;
   id: number;
   names: string[];
@@ -35,9 +33,9 @@ interface Pool {
   description: string;
 }
 
-type MicroPool = Pick<Pool, 'id' | 'names' | 'category' | 'description' | 'postCount'>;
+export type MicroPool = Pick<Pool, 'id' | 'names' | 'category' | 'description' | 'postCount'>;
 
-interface Comment {
+export interface Comment {
   version: number;
   id: number;
   postId: number;
