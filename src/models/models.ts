@@ -1,4 +1,4 @@
-import type { MicroPost } from '../api/post/post-api-models';
+import type { MicroPost } from '../api/post/post-models';
 import type { MicroUser } from '../api/user/user-models';
 
 interface UserToken {

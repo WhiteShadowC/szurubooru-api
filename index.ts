@@ -23,7 +23,7 @@ applyMixins(SzurubooruApi, [PostApi, TagApi, TagCategoryApi, UserApi]);
 
 export default SzurubooruApi;
 
-export * from './src/api/post/post-api-models';
-export * from './src/api/tag/tag-api-models';
+export * from './src/api/post/post-models';
+export * from './src/api/tag/tag-models';
 export * from './src/api/tag-category/tag-category-models';
 export * from './src/api/user/user-models';

@@ -1,4 +1,4 @@
-import type { Post } from '../api/post/post-api-models';
+import type { Post } from '../api/post/post-models';
 
 export interface UnpagedSearchResult<T, F extends keyof T = keyof T> {
   results: Array<Pick<T, F>>;

@@ -1,4 +1,4 @@
-import type { MicroTag } from '../tag/tag-api-models';
+import type { MicroTag } from '../tag/tag-models';
 import type { MicroUser } from '../user/user-models';
 import type { MicroPool } from '../../models/models';
 
