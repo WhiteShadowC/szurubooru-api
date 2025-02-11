@@ -17,8 +17,8 @@ export interface Post {
   canvasHeight: number;
   contentUrl: string;
   thumbnailUrl: string;
-  // todo
-  flags: string[]; // todo flags are 'loop' and 'sound'
+  // todo flags are 'loop' and 'sound'
+  flags: string[];
   tags: MicroTag[];
   relations: MicroPost[];
   notes: Note[];
