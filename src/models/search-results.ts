@@ -49,4 +49,7 @@ export type SzuruEndpointArgs<T extends string> = {
   [K in T]: string | number;
 };
 
-export type SzuruResponse<T, F extends keyof T> = Pick<T, F>;
+export class SzuruResponse<T, E extends SzuruErrors = SzuruErrors> {
+  response?: T;
+  error?: SzuruError<E>;
+}

@@ -17,25 +17,25 @@ type UpdateUserDTO = SzuruPayload<Partial<Pick<User, 'name' | 'email' | 'rank' |
 export class UserApi extends SzuruBaseApi {
   async getUsers<F extends keyof User = keyof User>(
     args: SzuruRequest<User, F> & SzuruQuery<PagedSearchResultQuery>
-  ): Promise<PagedSearchResult<User, F>> {
+  ): Promise<SzuruResponse<PagedSearchResult<User, F>>> {
     return await this.request('GET', 'users', args);
   }
 
   async createUser<F extends keyof User = keyof User>(
     args: SzuruRequest<User, F> & CreateUserDTO & Partial<SzuruUpload<'avatar'>>
-  ): Promise<SzuruResponse<User, F>> {
+  ): Promise<SzuruResponse<Pick<User, F>>> {
     return await this.request('POST', 'users', args);
   }
 
   async updateUser<F extends keyof User = keyof User>(
     args: SzuruRequest<User, F> & UpdateUserDTO & SzuruVersion & Partial<SzuruUpload<'avatar'>> & SzuruEndpointArgs<'name'>
-  ): Promise<SzuruResponse<User, F>> {
+  ): Promise<SzuruResponse<Pick<User, F>>> {
     return await this.request('PUT', `users/${args.name}`, args);
   }
 
   async getUser<F extends keyof User = keyof User>(
     args: SzuruRequest<User, F> & SzuruEndpointArgs<'name'>
-  ): Promise<SzuruResponse<User, F>> {
+  ): Promise<SzuruResponse<Pick<User, F>>> {
     return await this.request('GET', `users/${args.name}`, args);
   }
 

@@ -1,5 +1,6 @@
 import axios, { type AxiosRequestConfig, type Method } from 'axios';
 import * as fs from 'fs';
+import { SzuruResponse } from '../models/search-results';
 
 export interface SzuruAuth {
   host: string;
@@ -21,7 +22,11 @@ export abstract class SzuruBaseApi {
     }
   }
 
-  protected async request<T, E extends SzuruErrors>(method: Method, endpoint: string, args: any): Promise<T> {
+  protected isResponseAnError<E extends SzuruErrors>(response: object | SzuruError<E>): response is SzuruError {
+    return (response as SzuruError).name !== undefined && (response as SzuruError).title !== undefined && (response as SzuruError).description !== undefined;
+  }
+
+  protected async request<T, E extends SzuruErrors>(method: Method, endpoint: string, args: any): Promise<SzuruResponse<T, E>> {
     const request: AxiosRequestConfig = {
       method,
       headers: {
@@ -55,7 +60,17 @@ export abstract class SzuruBaseApi {
       else request.data = payload;
     }
 
-    return (await axios.request(request)).data;
+    request.validateStatus = statusCode => true;
+    const data = (await axios.request(request)).data;
+    const response = new SzuruResponse<T, E>();
+
+    if (this.isResponseAnError(data)) {
+      response.error = data;
+    } else {
+      response.response = data;
+    }
+
+    return response;
   }
 
   private readonly useFormData = (upload: any): boolean => {
