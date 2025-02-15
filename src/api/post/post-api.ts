@@ -13,7 +13,7 @@ import {
 import type { Post } from "./post-models";
 
 type CreatePostDTO = SzuruPayload<Pick<Post, 'tags' | 'safety'> & Partial<Pick<Post, 'source' | 'relations' | 'notes' | 'flags'>> & { anonymous: boolean }>;
-type UpdatePostDTO = SzuruPayload<Pick<Post, 'tags' | 'safety'> & Partial<Pick<Post, 'source' | 'relations' | 'notes' | 'flags'>>>;
+type UpdatePostDTO = SzuruPayload<Partial<Pick<Post, 'safety' | 'source' | 'relations' | 'notes' | 'flags'>> & { tags: string[] }>;
 export class PostApi extends SzuruBaseApi {
   async getPosts<F extends keyof Post = keyof Post>(args: SzuruRequest<Post, F> & PagedSearchResultQuery): Promise<SzuruResponse<PagedSearchResult<Post, F>>> {
     return await this.request('GET', 'posts', { query: args });
